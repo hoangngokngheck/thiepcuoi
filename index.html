@@ -15,24 +15,25 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg: #fff7f9;
-      --primary: #b8325a;  /* rose */
-      --accent: #ff8fab;   /* soft pink */
-      --ink: #2b2b2b;
-      --muted: #7a7a7a;
-      --card: #ffffffcc;
-      --radius: 18px;
-      --shadow: 0 10px 30px rgba(0,0,0,.08);
+  --bg: #fff7f9;
+  --primary: #b8325a;  /* rose */
+  --accent: #ff8fab;   /* soft pink */
+  --ink: #2b2b2b;
+  --muted: #7a7a7a;
+  --card: #ffffffcc;
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(0,0,0,.08);
+  --main-font: 'Quicksand', Arial, sans-serif;
     }
     *{box-sizing:border-box}
     html,body{height:100%;}
     body{
       margin:0; background:linear-gradient(180deg,#fff7fb 0%, #fff 40%, #fff7fb 100%);
-      color:var(--ink); font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--ink); font-family:var(--main-font);
       overflow-x:hidden;
     }
     a{color:var(--primary); text-decoration:none}
@@ -58,7 +59,7 @@
     .tag{display:inline-block; padding:8px 14px; border-radius:999px; background:#ffffffb8; backdrop-filter: blur(6px); box-shadow:var(--shadow); color:var(--primary); font-weight:600; letter-spacing:.04em}
 
     .names{
-      font-family:'Playfair Display', serif;
+      font-family:'Dancing Script', cursive;
       font-size: clamp(36px, 7vw, 86px);
       margin:16px 0 6px;
       line-height:1.05;
@@ -66,6 +67,8 @@
       white-space:normal;
       word-break:keep-all;
       text-align:center;
+      font-weight:700;
+      letter-spacing:0.01em;
     }
     .names .amp {
       display:block;
@@ -88,7 +91,7 @@
     /* --- SECTIONS --- */
     section{padding:80px 24px}
     .container{width:min(1100px,95%); margin:0 auto}
-    .section-title{font-family:'Playfair Display', serif; font-size:clamp(26px,4.8vw,44px); margin:0 0 14px; text-align:center}
+  .section-title{font-family:var(--main-font); font-size:clamp(26px,4.8vw,44px); margin:0 0 14px; text-align:center; font-weight:700;}
     .section-sub{color:var(--muted); text-align:center; margin:0 auto 36px; max-width:760px}
 
     .grid-2{display:grid; grid-template-columns:1.1fr 1fr; gap:24px}
@@ -155,7 +158,7 @@
           <!-- map pin icon -->
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
           <div>
-            <div><strong>Nhà gái: TDP Đông Tuấn, thị xã Chũ, tỉnh Bắc Giang</strong></div>
+            <div><strong>Nhà gái: TDP Đồng Tuấn, thị xã Chũ, tỉnh Bắc Giang</strong></div>
             <small>Nhà trai: Lục Nam, tỉnh Bắc Giang</small>
           </div>
         </div>
@@ -163,7 +166,7 @@
 
       <div class="cta reveal" style="transition-delay:.24s">
         <a class="btn primary" href="#details">Xem chi tiết</a>
-        <a class="btn ghost" target="_blank" href="https://maps.app.goo.gl/">Xem bản đồ</a>
+  <a class="btn ghost" href="#map">Xem bản đồ</a>
       </div>
     </div>
   </header>
@@ -205,7 +208,7 @@
       </div>
 
       <div class="card reveal" style="display:grid; place-items:center; text-align:center; background:linear-gradient(145deg,#fff,#fff0f6)">
-        <blockquote style="font-family:'Playfair Display',serif; font-size:clamp(18px,2.4vw,24px); margin:0 0 12px; color:#7a2940">
+  <blockquote style="font-family:var(--main-font); font-size:clamp(18px,2.4vw,24px); margin:0 0 12px; color:#7a2940; font-weight:600">
           “Tình yêu không phải là nhìn nhau, mà là cùng nhìn về một hướng.”
         </blockquote>
         <small style="color:var(--muted)">— Antoine de Saint‑Exupéry</small>
@@ -247,7 +250,7 @@
       <h2 class="section-title reveal">Bản đồ</h2>
       <p class="section-sub reveal">Nhấn vào bản đồ để mở trong Google Maps và chỉ đường.</p>
       <div class="map-wrap reveal" style="margin-bottom:24px">
-        <h3 style="margin:12px 0 6px">Nhà gái: TDP Đông Tuấn, thị xã Chũ, tỉnh Bắc Giang</h3>
+        <h3 style="margin:12px 0 6px">Nhà gái: TDP Đồng Tuấn, thị xã Chũ, tỉnh Bắc Giang</h3>
         <a href="https://maps.app.goo.gl/4Qk2Qw6Qw2Qw6Qw6A" target="_blank" style="display:block;margin-bottom:8px;color:var(--primary)">Xem trên Google Maps</a>
         <iframe title="map-nhagai" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d5428.8248450335!2d106.58151243216871!3d21.414566513903548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDI0JzU5LjgiTiAxMDbCsDM0JzU3LjciRQ!5e0!3m2!1svi!2s!4v1758760285166!5m2!1svi!2s" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
@@ -275,8 +278,7 @@
   </div>
 
   <audio id="bgm" preload="auto" loop>
-    <!-- Đưa file vào repo: /assets/song.mp3 rồi đổi src bên dưới -->
-    <!-- <source src="assets/song.mp3" type="audio/mpeg" /> -->
+  <source src="asset/cuoinhaudi.mp3" type="audio/mpeg" />
   </audio>
 
   <script>
