@@ -8,7 +8,7 @@
   <!-- Open Graph for nice link preview (đổi og:image sau khi bạn có ảnh thumbnail.jpg) -->
   <meta property="og:title" content="Thiệp cưới Duyên & Bình" />
   <meta property="og:description" content="Kính mời bạn đến dự hôn lễ của Phùng Thị Duyên & Nguyễn Thanh Bình" />
-  <meta property="og:image" content="https://your-username.github.io/your-repo/thumbnail.jpg" />
+  <meta property="og:image" content="images/thumb.png" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://your-username.github.io/your-repo/" />
 
@@ -57,7 +57,21 @@
     }
     .tag{display:inline-block; padding:8px 14px; border-radius:999px; background:#ffffffb8; backdrop-filter: blur(6px); box-shadow:var(--shadow); color:var(--primary); font-weight:600; letter-spacing:.04em}
 
-    .names{font-family:'Playfair Display', serif; font-size: clamp(36px, 7vw, 86px); margin:16px 0 6px; line-height:1.05;}
+    .names{
+      font-family:'Playfair Display', serif;
+      font-size: clamp(36px, 7vw, 86px);
+      margin:16px 0 6px;
+      line-height:1.05;
+      display:block;
+      white-space:normal;
+      word-break:keep-all;
+      text-align:center;
+    }
+    .names .amp {
+      display:block;
+      font-size:0.7em;
+      margin:0.1em 0;
+    }
     .amp{padding:0 .25em; color:var(--primary)}
     .sub{color:var(--muted); font-size:clamp(14px, 2.4vw, 18px)}
 
@@ -121,7 +135,11 @@
   <header class="hero" id="home">
     <div class="hero-inner">
       <span class="tag">Thiệp mời</span>
-      <h1 class="names reveal">Phùng Thị Duyên <span class="amp">&</span> Nguyễn Thanh Bình</h1>
+      <h1 class="names reveal">
+        <span>Phùng Thị Duyên</span>
+        <span class="amp">&</span>
+        <span>Nguyễn Thanh Bình</span>
+      </h1>
       <p class="sub reveal" style="transition-delay:.08s">Trân trọng kính mời Quý vị đến dự hôn lễ của chúng tôi</p>
 
       <div class="hero-card reveal" style="transition-delay:.16s">
