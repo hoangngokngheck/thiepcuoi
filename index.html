@@ -191,7 +191,12 @@
       .gallery img { width: 220px; height: 270px; }
     }
     @media (max-width:700px) {
-      .gallery img { width: 120px; height: 140px; }
+      .gallery img { 
+        width: 280px; 
+        height: 320px;
+        margin-bottom: 12px;
+      }
+      .gallery { padding: 12px 0; }
     }
 
     /* footer */
@@ -465,8 +470,16 @@
       center: true,
       fixedWidth: 340,
       responsive: {
-        700: { fixedWidth: 220 },
-        1100: { fixedWidth: 340 }
+        700: { 
+          fixedWidth: 280,
+          gutter: 16,
+          edgePadding: 20
+        },
+        1100: { 
+          fixedWidth: 340,
+          gutter: 24,
+          edgePadding: 0
+        }
       }
     });
 
