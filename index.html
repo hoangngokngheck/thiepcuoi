@@ -30,14 +30,14 @@
       align-items: flex-start;
       pointer-events: none; z-index: 1;
       gap: 0; margin: 0;
-      padding-top: 4vh;
+      padding-top: 8vh;
     }
     .hero-photo-side {
-      width: 270px;
-      max-width: 24vw;
+      width: 220px;
+      max-width: 20vw;
       aspect-ratio: 3/4;
       object-fit: cover;
-      border-radius: 32px;
+      border-radius: 28px;
       box-shadow: 0 16px 48px 0 rgba(184,50,90,0.18), 0 2px 12px #fff8;
       opacity: 0.97;
       filter: blur(0.2px) saturate(1.12);
@@ -46,6 +46,12 @@
       outline: 4px solid rgba(255,143,171,0.13);
       background: linear-gradient(135deg, #fff7fb 60%, #ffe3ef 100%);
       margin: 0;
+    }
+    .hero-photo-side:first-child {
+      transform: translateX(-2vw);
+    }
+    .hero-photo-side:last-child {
+      transform: translateX(2vw);
     }
     .hero-photo-side:hover {
       z-index: 2;
@@ -57,13 +63,53 @@
       outline: 6px solid #fff0f6;
     }
     @media (max-width: 1200px) {
-      .hero-photo-side { width: 170px; max-width: 32vw; border-radius: 18px; }
+      .hero-photo-side { 
+        width: 160px; 
+        max-width: 28vw; 
+        border-radius: 18px; 
+      }
+      .hero-photos-sides {
+        padding-top: 10vh;
+      }
     }
     @media (max-width: 900px) {
-      .hero-photo-side { width: 110px; max-width: 28vw; border-radius: 12px; }
+      .hero-photo-side { 
+        width: 110px; 
+        max-width: 24vw; 
+        border-radius: 12px;
+      }
+      .hero-photos-sides {
+        padding-top: 12vh;
+      }
+      .hero-photo-side:first-child {
+        transform: translateX(-3vw);
+      }
+      .hero-photo-side:last-child {
+        transform: translateX(3vw);
+      }
     }
     @media (max-width: 700px) {
-      .hero-photos-sides { display: none; }
+      .hero-photos-sides { 
+        position: relative;
+        height: auto;
+        margin-top: 20px;
+      }
+      .hero-photo-side {
+        width: 280px;
+        height: 380px;
+        max-width: 85vw;
+        border-radius: 24px;
+        transition: transform 0.4s ease;
+      }
+      .hero-photo-side:first-child {
+        position: relative;
+        margin: 0 auto;
+        transform: scale(1);
+        box-shadow: 0 20px 40px rgba(184,50,90,0.2);
+      }
+      .hero-photo-side:last-child {
+        display: none;
+      }
     }
     :root{
   --bg: #fff7f9;
@@ -86,7 +132,18 @@
     a{color:var(--primary); text-decoration:none}
 
     /* --- HERO --- */
-    .hero{position:relative; min-height:100svh; display:grid; place-items:center; overflow:hidden;}
+    .hero{
+      position:relative; 
+      min-height:100svh; 
+      display:grid; 
+      place-items:center; 
+      overflow:hidden;
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,0.95) 0%,
+        rgba(255,255,255,0.85) 50%,
+        rgba(255,255,255,0.95) 100%
+      );
+    }
     .hero::before{
       /* dreamy gradient glow */
       content:""; position:absolute; inset:-30%;
@@ -101,7 +158,21 @@
     .petals{position:absolute; inset:0; z-index:1; pointer-events:none}
 
     .hero-inner{
-      position:relative; z-index:2; text-align:center; padding:80px 24px; width:min(1100px,95%);
+      position:relative; 
+      z-index:2; 
+      text-align:center; 
+      padding: 60px 24px;
+      width:min(1100px,95%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    @media (max-width:700px) {
+      .hero-inner {
+        padding: 40px 20px;
+        gap: 16px;
+      }
     }
     .tag{display:inline-block; padding:8px 14px; border-radius:999px; background:#ffffffb8; backdrop-filter: blur(6px); box-shadow:var(--shadow); color:var(--primary); font-weight:600; letter-spacing:.04em}
 
@@ -192,8 +263,8 @@
     }
     @media (max-width:700px) {
       .gallery img { 
-        width: 240px; 
-        height: 360px;
+        width: 200px; 
+        height: 440px;
         margin-bottom: 12px;
         border-radius: 14px;
       }
@@ -222,10 +293,6 @@
   <canvas class="petals" id="petalsCanvas" aria-hidden="true"></canvas>
 
   <header class="hero" id="home">
-    <div class="hero-photos-sides">
-      <img class="hero-photo-side" src="images/{0EC1193D-2F82-4E28-8DF1-06EA9B61D031}.png" alt="Ảnh cưới trái">
-      <img class="hero-photo-side" src="images/{0F794505-9595-4DE7-A8C6-7FAC45A21230}.png" alt="Ảnh cưới phải">
-    </div>
     <div class="hero-inner">
       <span class="tag">Thiệp mời</span>
       <h1 class="names reveal">
@@ -234,6 +301,10 @@
         <span>Nguyễn Thanh Bình</span>
       </h1>
       <p class="sub reveal" style="transition-delay:.08s">Trân trọng kính mời Quý vị đến dự hôn lễ của chúng tôi</p>
+      <div class="hero-photos-sides">
+        <img class="hero-photo-side" src="images/{199DC963-1FC9-4620-89C7-5821D2CEB261}.png" alt="Ảnh cưới chính">
+        <img class="hero-photo-side" src="images/{0F794505-9595-4DE7-A8C6-7FAC45A21230}.png" alt="Ảnh cưới phụ">
+      </div>
 
       <div class="hero-card reveal" style="transition-delay:.16s">
         <div class="item" title="Thời gian">
@@ -273,7 +344,7 @@
             </div>
             <div>
               <div style="font-weight:700">Ngày: 11-12/10/2025</div>
-              <div class="t-desc">Đón khách: 10:00 • Khai tiệc: 11:00</div>
+              <div class="t-desc">Đón khách: 07:30 • Khai tiệc: 08:00</div>
             </div>
           </div>
           <div style="display:flex; align-items:center; gap:12px">
@@ -282,16 +353,23 @@
             </div>
             <div>
               <div style="font-weight:700">Nhà gái: TDP Đông Tuấn, thị xã Chũ, tỉnh Bắc Giang</div>
-              <div class="t-desc">Nhà trai: Lục Nam, tỉnh Bắc Giang</div>
+              <div class="t-desc">Nhà trai: Thôn Chính Hạ, xã Bắc Lũng, tỉnh Bắc Ninh</div>
             </div>
           </div>
-          <div style="display:flex; align-items:center; gap:12px">
-            <div style="width:42px;height:42px; display:grid;place-items:center; border-radius:12px; background:#fff0f5; color:var(--primary)">
+          <div style="display:flex; align-items:flex-start; gap:12px">
+            <div style="width:42px;height:42px; display:grid;place-items:center; border-radius:12px; background:#fff0f5; color:var(--primary); margin-top:4px">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             </div>
             <div>
               <div style="font-weight:700">Cô dâu: Phùng Thị Duyên</div>
-              <div style="font-weight:700">Chú rể: Nguyễn Thanh Bình</div>
+              <div class="t-desc">SĐT: 0348162257</div>
+              <div style="margin:8px 0 4px; color:var(--muted)">Con ông: Phùng Văn Đạo</div>
+              <div style="margin-bottom:8px; color:var(--muted)">Con bà: Đỗ Thị Tư</div>
+              
+              <div style="font-weight:700; margin-top:12px">Chú rể: Nguyễn Thanh Bình</div>
+              <div class="t-desc">SĐT: 0386448731</div>
+              <div style="margin:8px 0 4px; color:var(--muted)">Con ông: Nguyễn Văn Huynh</div>
+              <div style="color:var(--muted)">Con bà: Vũ Thị Vui</div>
             </div>
           </div>
         </div>
@@ -312,10 +390,10 @@
       <h2 class="section-title reveal">Lịch trình ngày cưới</h2>
       <p class="section-sub reveal">Một ngày đáng nhớ được bắt đầu từ những khoảnh khắc giản dị.</p>
       <div class="timeline">
-        <div class="t-item reveal"><div class="t-title">10:00 — Đón khách</div><div class="t-desc">Chào đón Quý khách, chụp ảnh lưu niệm</div></div>
-        <div class="t-item reveal"><div class="t-title">11:00 — Khai tiệc</div><div class="t-desc">Nghi thức, phát biểu, nâng ly chúc mừng</div></div>
-        <div class="t-item reveal"><div class="t-title">12:30 — Văn nghệ & chúc phúc</div><div class="t-desc">Cùng sẻ chia niềm vui, trò chuyện</div></div>
-        <div class="t-item reveal"><div class="t-title">13:30 — Kết thúc</div><div class="t-desc">Gửi lời cảm ơn và quà tặng</div></div>
+        <div class="t-item reveal"><div class="t-title">07:30 — Đón khách</div><div class="t-desc">Chào đón Quý khách, chụp ảnh lưu niệm</div></div>
+        <div class="t-item reveal"><div class="t-title">08:00 — Khai tiệc</div><div class="t-desc">Nghi thức, phát biểu, nâng ly chúc mừng</div></div>
+        <div class="t-item reveal"><div class="t-title">10:00 — Văn nghệ & chúc phúc</div><div class="t-desc">Cùng sẻ chia niềm vui, trò chuyện</div></div>
+        <div class="t-item reveal"><div class="t-title">12:00 — Kết thúc</div><div class="t-desc">Gửi lời cảm ơn và quà tặng</div></div>
       </div>
     </div>
   </section>
@@ -354,9 +432,9 @@
         <iframe title="map-nhagai" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d5428.8248450335!2d106.58151243216871!3d21.414566513903548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDI0JzU5LjgiTiAxMDbCsDM0JzU3LjciRQ!5e0!3m2!1svi!2s!4v1758760285166!5m2!1svi!2s" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <div class="map-wrap reveal">
-        <h3 style="margin:12px 0 6px">Nhà trai: Lục Nam, tỉnh Bắc Giang</h3>
+        <h3 style="margin:12px 0 6px">Nhà trai: Thôn Chính Hạ, xã Bắc Lũng, tỉnh Bắc Ninh</h3>
         <a href="https://maps.app.goo.gl/6Qw2Qw6Qw2Qw6Qw6B" target="_blank" style="display:block;margin-bottom:8px;color:var(--primary)">Xem trên Google Maps</a>
-        <iframe title="map-nhatrai" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3717.6222090352717!2d106.33442307526373!3d21.28641698042817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDE3JzExLjEiTiAxMDbCsDIwJzEzLjIiRQ!5e0!3m2!1svi!2s!4v1759144598048!5m2!1svi!2s" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3717.6222090352717!2d106.33442307526373!3d21.28641698042817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDE3JzExLjEiTiAxMDbCsDIwJzEzLjIiRQ!5e0!3m2!1svi!2s!4v1759235501150!5m2!1svi!2s" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
@@ -472,9 +550,9 @@
       fixedWidth: 340,
       responsive: {
         700: { 
-          fixedWidth: 240,
+          fixedWidth: 220,
           gutter: 20,
-          edgePadding: 40
+          edgePadding: 50
         },
         1100: { 
           fixedWidth: 340,
