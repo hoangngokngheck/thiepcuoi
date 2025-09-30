@@ -18,8 +18,53 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <!-- tiny-slider (lightweight slider) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
 
   <style>
+    /* Ảnh hai bên hero */
+    .hero-photos-sides {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      display: flex; justify-content: space-between;
+      align-items: flex-start;
+      pointer-events: none; z-index: 1;
+      gap: 0; margin: 0;
+      padding-top: 4vh;
+    }
+    .hero-photo-side {
+      width: 270px;
+      max-width: 24vw;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 32px;
+      box-shadow: 0 16px 48px 0 rgba(184,50,90,0.18), 0 2px 12px #fff8;
+      opacity: 0.97;
+      filter: blur(0.2px) saturate(1.12);
+      transition: transform .4s cubic-bezier(.4,2,.6,1), box-shadow .3s, border .3s;
+      border: 6px solid #fff;
+      outline: 4px solid rgba(255,143,171,0.13);
+      background: linear-gradient(135deg, #fff7fb 60%, #ffe3ef 100%);
+      margin: 0;
+    }
+    .hero-photo-side:hover {
+      z-index: 2;
+      transform: scale(1.07) rotate(-1.5deg);
+      box-shadow: 0 32px 64px 0 rgba(184,50,90,0.22), 0 4px 16px #fff8;
+      opacity: 1;
+      filter: none;
+      border: 6px solid #ff8fab;
+      outline: 6px solid #fff0f6;
+    }
+    @media (max-width: 1200px) {
+      .hero-photo-side { width: 170px; max-width: 32vw; border-radius: 18px; }
+    }
+    @media (max-width: 900px) {
+      .hero-photo-side { width: 110px; max-width: 28vw; border-radius: 12px; }
+    }
+    @media (max-width: 700px) {
+      .hero-photos-sides { display: none; }
+    }
     :root{
   --bg: #fff7f9;
   --primary: #b8325a;  /* rose */
@@ -110,11 +155,44 @@
     .t-desc{color:var(--muted)}
 
     /* gallery */
-    .gallery{display:grid; grid-template-columns:repeat(6, 1fr); gap:10px}
-    .gallery img{width:100%; height:220px; object-fit:cover; border-radius:14px; box-shadow:0 8px 22px rgba(0,0,0,.08); transform:translateZ(0); transition:transform .3s}
-    .gallery img:hover{transform:translateY(-4px)}
-    @media (max-width:1100px){ .gallery{grid-template-columns:repeat(4,1fr)} }
-    @media (max-width:700px){ .gallery{grid-template-columns:repeat(2,1fr)} .gallery img{height:160px} }
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 24px;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 12px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .gallery-wrap { position: relative; }
+    .gallery-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px; border-radius: 999px; border: none; background: #ffffffcc; color: var(--primary);
+      box-shadow: var(--shadow); display:grid; place-items:center; cursor:pointer; font-size:26px; z-index:5;
+    }
+    .gallery-prev { left: 8px }
+    .gallery-next { right: 8px }
+    .gallery::-webkit-scrollbar { display: none; }
+    .gallery img {
+      flex: 0 0 auto;
+      width: 340px;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 12px 32px rgba(0,0,0,.10);
+      transform: translateZ(0);
+      transition: transform .3s;
+      scroll-snap-align: center;
+    }
+    .gallery img:hover { transform: translateY(-8px) scale(1.04); }
+  /* Ensure gallery images are visible even if 'reveal' hasn't been toggled yet */
+  .gallery .reveal { opacity: 1 !important; transform: none !important; }
+    @media (max-width:1100px) {
+      .gallery img { width: 220px; height: 270px; }
+    }
+    @media (max-width:700px) {
+      .gallery img { width: 120px; height: 140px; }
+    }
 
     /* footer */
     .footer{padding:50px 24px 90px; text-align:center; color:#6b6b6b}
@@ -138,6 +216,10 @@
   <canvas class="petals" id="petalsCanvas" aria-hidden="true"></canvas>
 
   <header class="hero" id="home">
+    <div class="hero-photos-sides">
+      <img class="hero-photo-side" src="images/{0EC1193D-2F82-4E28-8DF1-06EA9B61D031}.png" alt="Ảnh cưới trái">
+      <img class="hero-photo-side" src="images/{0F794505-9595-4DE7-A8C6-7FAC45A21230}.png" alt="Ảnh cưới phải">
+    </div>
     <div class="hero-inner">
       <span class="tag">Thiệp mời</span>
       <h1 class="names reveal">
@@ -236,13 +318,22 @@
     <div class="container">
       <h2 class="section-title reveal">Khoảnh khắc</h2>
       <p class="section-sub reveal">Một vài hình ảnh ngọt ngào của Duyên & Bình</p>
-      <div class="gallery">
+      <div class="gallery-wrap" style="position:relative">
+        <div class="gallery" id="gallerySlider">
   <img class="reveal" src="images/{0EC1193D-2F82-4E28-8DF1-06EA9B61D031}.png" alt="Khoảnh khắc 1">
   <img class="reveal" src="images/{0F794505-9595-4DE7-A8C6-7FAC45A21230}.png" alt="Khoảnh khắc 2">
   <img class="reveal" src="images/{1701DC27-C5D4-4790-9A9D-82777E59DF86}.png" alt="Khoảnh khắc 3">
   <img class="reveal" src="images/{1925C8E7-C8A6-48B5-998A-6C4027F8BFD9}.png" alt="Khoảnh khắc 4">
   <img class="reveal" src="images/{199DC963-1FC9-4620-89C7-5821D2CEB261}.png" alt="Khoảnh khắc 5">
   <img class="reveal" src="images/{2C6FE81C-DFCF-4A25-BF42-34A2FD91F1A1}.png" alt="Khoảnh khắc 6">
+  <img class="reveal" src="images/{43E9A63A-EB98-4BF8-B475-B30F88097634}.png" alt="Khoảnh khắc 7">
+  <img class="reveal" src="images/{6CA26D29-5873-4CD9-BE4D-7DB40F0B8ED4}.png" alt="Khoảnh khắc 8">
+  <img class="reveal" src="images/{B0904462-5DE9-4512-ADFA-BD00D20FB8DF}.png" alt="Khoảnh khắc 9">
+  <img class="reveal" src="images/{B83123E5-C040-43C0-913E-29D236BEA2C0}.png" alt="Khoảnh khắc 10">
+  <img class="reveal" src="images/{B9E15A52-BE33-4F82-9EC6-C3BA17831CA0}.png" alt="Khoảnh khắc 11">
+  <img class="reveal" src="images/{DB4B6EFC-6735-4A9B-91D5-77B48B70D647}.png" alt="Khoảnh khắc 12">
+  <img class="reveal" src="images/{E28A9497-0A42-4D3F-BB51-C940FA44E4FB}.png" alt="Khoảnh khắc 13">
+  </div>
       </div>
     </div>
   </section>
@@ -259,7 +350,7 @@
       <div class="map-wrap reveal">
         <h3 style="margin:12px 0 6px">Nhà trai: Lục Nam, tỉnh Bắc Giang</h3>
         <a href="https://maps.app.goo.gl/6Qw2Qw6Qw2Qw6Qw6B" target="_blank" style="display:block;margin-bottom:8px;color:var(--primary)">Xem trên Google Maps</a>
-        <iframe title="map-nhatrai" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d20918.946846488216!2d106.33202395857693!3d21.300841452206587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1758760634936!5m2!1svi!2s" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe title="map-nhatrai" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3717.6222090352717!2d106.33442307526373!3d21.28641698042817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDE3JzExLjEiTiAxMDbCsDIwJzEzLjIiRQ!5e0!3m2!1svi!2s!4v1759144598048!5m2!1svi!2s" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
@@ -354,4 +445,47 @@
     tick();
   </script>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
+<script>
+  // initialize tiny-slider for the gallery
+  try {
+    const slider = tns({
+      container: '#gallerySlider',
+      items: 1,
+      slideBy: 1,
+      autoplay: true,
+      autoplayButtonOutput: false,
+      autoplayTimeout: 4200,
+      speed: 800,
+      controls: false,
+      nav: false,
+      loop: true,
+      mouseDrag: true,
+      gutter: 24,
+      center: true,
+      fixedWidth: 340,
+      responsive: {
+        700: { fixedWidth: 220 },
+        1100: { fixedWidth: 340 }
+      }
+    });
+
+    // Pause on pointerdown / mouseenter and resume after timeout
+    let resumeTimer;
+    function pauseSlider() { try { slider.pause(); } catch(e){} clearTimeout(resumeTimer); }
+    function resumeSliderDelayed() { clearTimeout(resumeTimer); resumeTimer = setTimeout(()=>{ try{ slider.play(); }catch(e){} }, 3000); }
+
+    const container = document.getElementById('gallerySlider');
+    if (container) {
+      container.addEventListener('pointerdown', () => { pauseSlider(); });
+      container.addEventListener('pointerup', () => { resumeSliderDelayed(); });
+      container.addEventListener('pointercancel', () => { resumeSliderDelayed(); });
+      container.addEventListener('mouseleave', () => { resumeSliderDelayed(); });
+      container.addEventListener('mouseenter', () => { pauseSlider(); });
+      // touch events for some older browsers
+      container.addEventListener('touchstart', () => { pauseSlider(); }, { passive: true });
+      container.addEventListener('touchend', () => { resumeSliderDelayed(); });
+    }
+  } catch (e) { console.error('tiny-slider init failed', e); }
+</script>
 </html>
